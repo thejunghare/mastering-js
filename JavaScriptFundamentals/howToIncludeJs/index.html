@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <!-- BEFORE HTML 4 -->
+    <script type="text/javascritp">
+      console.log('Hello, World!');
+    </script>
+
+    <!-- AFTER HTML 4 -->
+    <script>
+      alert("Hello, World!");
+
+      console.log("Hello, World!");
+    </script>
+
+    <!-- THIS WON'T WORK -->
+    <script src="file.js">
+      alert(1); // the content is ignored, because src is set
+    </script>
+
+    <!-- External Js -->
+    <script src="file.js"></script>
+  </body>
+</html>
