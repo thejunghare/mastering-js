@@ -29,7 +29,7 @@ The if statement may contain an optional else block. It executes when the condit
 if (0) {
     // falsy
 } else {
-    console.log('I was executed');
+    console.log('Executed else');
 }
 
 /* 
@@ -38,8 +38,20 @@ Sometimes, we’d like to test several variants of a condition. The else if clau
 
 if (0) {
     // falsy
-} else if(1) {
-    console.log('I was executed');
+} else if (1) {
+    console.log('Executed else if');
 } else {
     // falsy
 }
+
+
+// conditional operator ?
+// let result = condition ? value1 : value2;
+let accessAllowed = (age > 18) ? true : false;
+
+
+// Non-traditional use of ‘?’
+let company = 'Netscape';
+
+(company == 'Netscape') ?
+    console.log('Right!') : console.log('Wrong.')
