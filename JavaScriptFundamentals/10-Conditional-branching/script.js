@@ -15,7 +15,7 @@ if (1) {
 }
 
 let age = 23
-if (age > 18) console.log('true') // short hand
+if (age > 18) console.log('true') // short hand 
 
 if (age > 18) {
     console.log('Age is greater than 18')
