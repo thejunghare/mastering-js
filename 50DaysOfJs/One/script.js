@@ -3,9 +3,9 @@
 "use strict"
 
 /* const curry = (f) => {
-  return function (a) {
-    return function (b) {
-      return function (c) {
+  return (a) => {
+    return (b) => {
+      return (c) => {
         return f(a, b, c)
       }
     }
