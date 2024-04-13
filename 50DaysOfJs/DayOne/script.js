@@ -24,4 +24,4 @@ let curriedSum = curry(sum)
 console.log(`call from normal function ${sum(1, 2, 3)}`)
 
 console.log(`call from curry function ${curriedSum(1)(2)(3)}`)
-// console.log(`call from curry function ${curriedSumUsingLodashLibrary(1, 2, 3)}`)
+// console.log(`call from curry function ${curriedSumUsingLodashLibrary(1, 2)(3)}`)
