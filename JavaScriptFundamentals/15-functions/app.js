@@ -18,6 +18,10 @@ function sayHello() {
 }
 
 // sayHello();
+// sayHello(); // show function code
+
+let func = sayHello;
+func();
 
 let number1 = 5;
 let number2 = 3;
@@ -41,3 +45,10 @@ console.log(addTwoNumbersAndReturn(4, 5));
     let greeting = "Hello";
     console.log(greeting);
 })();
+
+// function expression
+
+let func2 = function () {
+
+};
+
