@@ -1,8 +1,8 @@
-export const myMap = (array, callback) => {
+const myMap = (array, callback) => {
   const result = [];
 
   for (let i = 0; i < array.length; i++) {
-    mappedValue = callback(array[i], array);
+    let mappedValue = callback(array[i], i, array);
     result.push(mappedValue);
   }
 
@@ -16,3 +16,5 @@ export const myFilter = (array, callback) => {
 };
 
 export const myReduce = () => {};
+
+console.log(myMap([1, 2, 3, 4], (i) => i * 2));

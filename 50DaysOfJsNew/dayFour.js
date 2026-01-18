@@ -4,12 +4,13 @@ Implement a `message` method that returns 'Hello Singleton!'.
 Create only one instance of the Singleton class.
 Export the `Singleton` class as the default export
 */
-class Singleton{
-    constructor(){
+export default class Singleton {
+  constructor() {}
 
-    }
-
-    static getInstance(){
-
-    }
+  messgae() {
+    return "Hello Singleton";
+  }
 }
+
+let obj = new Singleton();
+console.log(obj.messgae());

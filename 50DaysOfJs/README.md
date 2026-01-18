@@ -1,6 +1,0 @@
-- function curring
-- counter function
-- abs difference
-- random number
-- capitalize first word
-- middle of even and odd array length
