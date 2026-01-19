@@ -3,27 +3,33 @@ Create a `Singleton` class with a `getInstance` method.
 Implement a `message` method that returns 'Hello Singleton!'.
 Create only one instance of the Singleton class.
 Export the `Singleton` class as the default export
-*/
+*/ 
 export default class Singleton {
-  static var
+  static instance;
+
   constructor() {
-    if (Singleton.var){
-      return Singleton.var
+    if (Singleton.instance) {
+      return Singleton.instance;
     }
-    Singleton.var = this;
+    
+    Singleton.instance = this;
   }
 
   static getInstance() {
-    if (!Singleton.var) {
-      Singleton.var = new Singleton();
+    if (!Singleton.instance) {
+      Singleton.instance = new Singleton();
     }
-    return Singleton.var;
+    return Singleton.instance;
   }
 
-  messgae() {
-    return "Hello Singleton";
+  message() {
+    return 'Hello Singleton!';
   }
 }
 
-let obj = new Singleton();
-console.log(obj.messgae());
+const instance1 = Singleton.getInstance();
+const instance2 = new Singleton();
+
+console.log(instance1.message());  
+console.log(instance1 === instance2); 
+
