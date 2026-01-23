@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" class="form-input">
+      <!-- todo title -->
+       <label>Title</label>
+       <input type="text"  name="title" id="title" placeholder="do fishing" />
+       <!-- todo description -->
+       <label>Description</label>
+       <input type="text" name="description" id="description" placeholder="fishing at uran lake"/>
+       <!-- todo date -->
+       <label>Date</label>
+      <input type="date" name="date" id="date" value="" />
+      <button type="submit">submit</button>
+    </form>
+
+    <ul>
+
+    </ul>
+
+    <script>
+        let btn = document.querySelector('button')
+let ulTag = document.querySelector('ul')
+        let titleInput = document.getElementById('title')
+        let descriptionInput = document.querySelector('#description')
+        let dateInput = document.querySelector('#date')
+
+        btn.addEventListener('click', (e) =>{
+            // !todo get the userinput and storage it somewhere
+            e.preventDefault()
+            console.log(titleInput.value, descriptionInput.value, dateInput.value);
+            const newLi = document.createElement('li')
+            ulTag.appendChild(newLi)
+newLi.textContent = `${titleInput.value} | ${descriptionInput.value} | ${dateInput.value}`
+        })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding Elements</title>
+
+    <style>
+        .newTag{
+            display: inline-block;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="section">
+        Hello
+        <span>world</span>
+     </div>
+
+
+    <script>
+        let box = document.getElementById('box');
+        let section = document.getElementsByClassName('section');
+        // console.log(box)
+        // console.log(section)
+
+        let spantag = document.querySelector('div')
+        // console.log(spantag.outerHTML)
+
+
+        // remove child -> span
+        let parentNode = document.querySelector('#box');
+        let childNode = document.querySelector('#box span')
+        //parentNode.removeChild(childNode)
+        //remove(childNode)
+
+        // replace
+        // let replaced = childNode.replaceWith('p')
+        // console.log(replaced);
+
+        let newNode = document.createElement('p');
+        newNode.textContent = "earth"
+        // newNode.style = 'display:inline-block'
+        // newNode.style = 'color:red'
+        newNode.classList.toggle('newTag')
+        parentNode.replaceChild(newNode,childNode);
+
+        console.log(parentNode.innerHTML)
+        console.log(parentNode.innerText)
+        console.log(parentNode.textContent)
+
+    </script>
+</body>
+
+</html>

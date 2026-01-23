@@ -12,3 +12,4 @@ icons.forEach(icon => {
         }
     });
 });
+

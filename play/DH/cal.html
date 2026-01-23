@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 1. Make the body the calculator frame */
+body {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  background-color: #222; /* Dark background for page */
+  font-family: sans-serif;
+  
+  /* Define the layout of the calculator pieces */
+  grid-template-columns: 3fr 1fr; /* Numbers (3 parts) | Operators (1 part) */
+  grid-template-rows: 80px 1fr 60px; /* Screen | Keys | Clear Button */
+  grid-template-areas:
+    "screen screen"
+    "numpad ops"
+    "clear clear";
+    
+  width: 320px;       /* Fixed width for the calculator */
+  margin: 0 auto;
+  gap: 10px;          /* Spacing between sections */
+  padding: 20px;
+  background: #333;   /* Calculator body color */
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* 2. The Display Screen (<p>) */
+p {
+  grid-area: screen;
+  background-color: #ecf0f1;
+  color: #333;
+  font-size: 2.5rem;
+  text-align: right;
+  padding: 10px 20px;
+  margin: 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  height: 100%;     /* Ensure it fills the row */
+  box-sizing: border-box; 
+}
+
+/* 3. The Operators Column */
+.opertor {
+  grid-area: ops;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.opertor div {
+  flex: 1; /* Stretch to fill height */
+  background-color: #f39c12; /* Orange color */
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+#equal {
+  background-color: #e67e22; /* Darker orange for equals */
+}
+
+/* 4. The Numbers Area */
+.box {
+  grid-area: numpad;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(4, 1fr);    /* 4 rows */
+  gap: 10px;
+  
+  /* Create the standard calculator map */
+  grid-template-areas:
+    "seven eight nine"
+    "four five six"
+    "one two three"
+    "zero zero zero"; /* 0 spans the bottom */
+}
+
+.box div {
+  background-color: #444;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  user-select: none;
+}
+
+.box div:hover, .opertor div:hover, #clearBtn:hover {
+  filter: brightness(1.2);
+}
+
+/* 5. Force the numbers into the correct visual position */
+/* Your HTML has 0 first, but calculators usually put 7-8-9 first. */
+/* We map your specific divs (nth-child) to the grid areas we made above. */
+
+.box div:nth-child(1) { grid-area: zero; }   /* 0 */
+.box div:nth-child(2) { grid-area: one; }    /* 1 */
+.box div:nth-child(3) { grid-area: two; }    /* 2 */
+.box div:nth-child(4) { grid-area: three; }  /* 3 */
+.box div:nth-child(5) { grid-area: four; }   /* 4 */
+.box div:nth-child(6) { grid-area: five; }   /* 5 */
+.box div:nth-child(7) { grid-area: six; }    /* 6 */
+.box div:nth-child(8) { grid-area: seven; }  /* 7 */
+.box div:nth-child(9) { grid-area: eight; }  /* 8 */
+.box div:nth-child(10){ grid-area: nine; }   /* 9 */
+
+/* 6. The Clear Button */
+#clearBtn {
+  grid-area: clear;
+  background-color: #c0392b; /* Red */
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div>0</div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+    </div>
+    <div class="opertor">
+      <div>+</div>
+      <div>-</div>
+      <div>*</div>
+      <div>/</div>
+      <div id="equal">=</div>
+    </div>
+    <p></p>
+    <div id="clearBtn">clear</div>
+
+    <script>
+     
+      let numberBtns = document.querySelectorAll(".box div");
+      let operatorBtns = document.querySelectorAll(".opertor div:not(#equal)");
+      let equalBtn = document.querySelector("#equal");
+      let display = document.querySelector("p");
+
+      // Handle Numbers
+      numberBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          display.innerText += btn.textContent;
+        });
+      });
+
+      operatorBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          display.innerText += btn.textContent;
+        });
+      });
+
+      equalBtn.addEventListener("click", () => {
+        try {
+          display.innerText = eval(display.innerText);
+        } catch (error) {
+          display.innerText = "Error";
+        }
+      });
+
+      let clearButton = document.querySelector('#clearBtn')
+      clearButton.addEventListener('click', () => {
+        display.innerHTML = 0
+      })
+    </script>
+  </body>
+</html>

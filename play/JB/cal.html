@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="numbers">
+      <div>0</div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+    </div>
+    <div class="opertors">
+      <div>+</div>
+      <div>-</div>
+      <div>*</div>
+      <div>/</div>
+    </div>
+    <div id="equal-to">=</div>
+    <div id="result" style="width:150px;border: 2px solid red; padding: 18px; margin:4px"></div>
+
+    <script>
+      let numbers = document.querySelectorAll(".numbers div");
+      let opertors = document.querySelectorAll(".opertors div");
+      let result = document.querySelector("#result");
+      let equal = document.querySelector("#equal-to");
+
+      numbers.forEach((number) => {
+        number.addEventListener("click", () => {
+          console.log(number.textContent);
+          result.innerText += number.textContent;
+        });
+      });
+
+      opertors.forEach((opertor) => {
+        opertor.addEventListener("click", () => {
+          console.log(opertor.textContent);
+          result.innerText += opertor.textContent;
+        });
+      });
+
+
+      equal.addEventListener('click', ()=>{
+        result.innerText= eval(result.innerText)
+      })
+
+
+
+      
+    </script>
+  </body>
+</html>

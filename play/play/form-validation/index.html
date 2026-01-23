@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <form>
+      <input
+        type="email"
+        placeholder="username@itm.edu"
+        pattern=".+@itm\.edu"
+        required
+      />
+      <textarea></textarea>
+      <button type="submit">submit</button>
+    </form>
+    
+    <script>
+      const input = document.querySelector("input");
+
+      input.addEventListener("input", (e) => {
+        if (!e.target.checkValidity()) {
+          e.target.setCustomValidity(
+            "You must use a company email address that ends in @sampleCompany.com",
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

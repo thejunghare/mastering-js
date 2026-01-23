@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .box {
+                border: 2px solid red;
+                display: flex;
+                flex-direction: row;
+            }
+            .box div {
+                margin: 0px 4px 0px 4px;
+                padding: 0px 4px 0px 4px;
+                border: 1px solid black;
+                background-color: antiquewhite;
+            }
+
+            .opertor {
+                display: flex;
+            }
+            .opertor div {
+                margin: 0px 4px 0px 4px;
+                padding: 0px 4px 0px 4px;
+                border: 1px solid black;
+                background-color: azure;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box">
+            <div>0</div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+        </div>
+        <div class="opertor">
+            <div>+</div>
+            <div>-</div>
+            <div>*</div>
+            <div>/</div>
+        </div>
+        <div id="equal-to">=</div>
+        <p id="para" style="border: 2px solid red; width: 200px"></p>
+
+        <script>
+            let numberButtons = document.querySelectorAll(".box div");
+            console.log(numberButtons);
+            let para = document.querySelector("#para");
+            numberButtons.forEach((button) => {
+                // console.log(b);
+                button.addEventListener("click", () => {
+                    console.log(button.textContent);
+                    para.innerText += button.textContent;
+                });
+            });
+
+            // opertors
+            let ops = document.querySelectorAll(".opertor div");
+            ops.forEach((op) => {
+                // console.log(b);
+                op.addEventListener("click", () => {
+                    console.log(op.textContent);
+                    para.innerText += op.textContent;
+                });
+            });
+
+            let eql = document.querySelector("#equal-to");
+            eql.addEventListener("click", () => {
+                para.innerText = eval(para.innerText);
+            });
+        </script>
+    </body>
+</html>

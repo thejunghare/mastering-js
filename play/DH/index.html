@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding Elements</title>
+</head>
+
+<body>
+    <div id="box" class="section">
+        Hello
+        <span>earth</span>
+    </div>
+
+    <button id="btn">Update</button> 
+
+    <script>
+        let spanTag = document.querySelector('span')
+        
+        // finding/get the btn
+        let btn = document.querySelector('#btn')
+        // function name(){}
+        // btn.addEventListener('click',name)
+        btn.addEventListener('click', () => {
+            spanTag.textContent = 'World'
+        })
+    </script>
+
+</body>
+<!-- // // spanTag.replaceWith('earth')
+        // let parentNode = document.querySelector('#box')
+        // let newChild = document.createElement('p')
+        // newChild.textContent = "Prasad"
+        // newChild.style = "display:inline-block"
+        // newChild.style = "color:red"
+        // newChild.style.color = "red"
+        // newChild.classList.toggle('fname')
+        // parentNode.replaceChild(newChild, spanTag)
+
+        // parentNode.removeChild(spanTag)
+
+        // console.log(parentNode.innerHTML);
+        // console.log(parentNode.innerText);
+        // console.log(parentNode.textContent);
+ -->
+</html>

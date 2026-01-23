@@ -1,23 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div id="box">
-    Hello      
-    <span>World</span>
-    <span style="display: none">I am hidden!</span>
-</div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SessionStorage Demo</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+      }
+      textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .status {
+        margin-top: 10px;
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>📧 Temporary Email Draft</h2>
+    <p>Type something below, then refresh the page.</p>
 
-<script>
-const box  = document.querySelector('#box')
-console.log(box.innerText)
-console.log(box.textContent)
-console.log(box.innerHTML)
+    <textarea
+      id="emailDraft"
+      placeholder="Start typing your email..."
+    ></textarea>
+    <div id="status" class="status"></div>
 
-</script>
-</body>
+    <script>
+      const input = document.getElementById("emailDraft");
+      const status = document.getElementById("status");
+
+      // 1. Check if we have a saved draft in sessionStorage on load
+      if (sessionStorage.getItem("draft_message")) {
+        input.value = sessionStorage.getItem("draft_message");
+        status.innerText = "Rescued your draft from the session!";
+      }
+
+      // 2. Listen for typing and save to sessionStorage
+      input.addEventListener("input", (e) => {
+        sessionStorage.setItem("draft_message", e.target.value);
+        status.innerText = "Saving...";
+      });
+    </script>
+  </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cache API Demo</title>
+</head>
+<body>
+    <h2>The Offline Image Saver</h2>
+    <button onclick="saveToCache()">Download & Cache Image</button>
+    <button onclick="loadFromCache()">Load from Cache (Offline)</button>
+    <br><br>
+    <img id="myImage" alt="Image will appear here" width="300"/>
+
+    <script>
+        const CACHE_NAME = 'my-class-cache-v1';
+        const IMAGE_URL = 'https://images.dog.ceo/breeds/retriever-golden/n02099601_124.jpg';
+
+        async function saveToCache() {
+            // Open the pantry (Cache)
+            const cache = await caches.open(CACHE_NAME);
+            // Go to the store (Network), get the image, put in pantry
+            await cache.add(IMAGE_URL);
+            alert('Image saved to Cache! Now disconnect your internet.');
+        }
+
+        async function loadFromCache() {
+            const cache = await caches.open(CACHE_NAME);
+            // Check pantry for the image
+            const cachedResponse = await cache.match(IMAGE_URL);
+
+            if (cachedResponse) {
+                // Turn the file into a Blob (image data) to show it
+                const blob = await cachedResponse.blob();
+                document.getElementById('myImage').src = URL.createObjectURL(blob);
+            } else {
+                alert('Image not found in Cache!');
+            }
+        }
+    </script>
+</body>
+</html>
