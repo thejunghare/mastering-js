@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Async Simplified</title>
+</head>
+
+<body>
+
+    <h2>Async JS: 3 Ways</h2>
+    <div id="display" style="font-size: 20px; font-weight: bold; margin: 20px 0;">Waiting...</div>
+
+    <button onclick="doCallback()">1. Callback</button>
+    <button onclick="doPromise()">2. Promise</button>
+    <button onclick="doAsync()">3. Async/Await</button>
+
+    <script>
+        const display = document.getElementById("display");
+
+        function doCallback() {
+            display.innerText = "1. Ordering...";
+
+            setTimeout(() => {
+                display.innerText = "1. Pizza Delivered!";
+            }, 2000);
+        }
+
+        function orderPizza() {
+            return new Promise(resolve => {
+                setTimeout(() => resolve("Pizza Delivered!"), 2000);
+            });
+        }
+
+        function doPromise() {
+            display.innerText = "Ordering...";
+
+            orderPizza()
+                .then(msg => {
+                    display.innerText = msg;
+                });
+        }
+
+        async function doAsync() {
+            display.innerText = "Ordering...";
+
+            const msg = await orderPizza();
+
+            display.innerText = msg;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Cache API Demo</title>
 </head>
+
 <body>
-    <h2>The Offline Image Saver</h2>
-    <button onclick="saveToCache()">Download & Cache Image</button>
-    <button onclick="loadFromCache()">Load from Cache (Offline)</button>
-    <br><br>
-    <img id="myImage" alt="Image will appear here" width="300"/>
+    <h3>Cache API Demo</h3>
+    <button onclick="save()">1. Save to Cache</button>
+    <button onclick="load()">2. Load (Offline)</button>
+    <p id="status"></p>
+
+    <img id="img" width="300" />
 
     <script>
-        const CACHE_NAME = 'my-class-cache-v1';
-        const IMAGE_URL = 'https://images.dog.ceo/breeds/retriever-golden/n02099601_124.jpg';
+        const url = 'https://images.dog.ceo/breeds/retriever-golden/n02099601_124.jpg';
 
-        async function saveToCache() {
-            // Open the pantry (Cache)
-            const cache = await caches.open(CACHE_NAME);
-            // Go to the store (Network), get the image, put in pantry
-            await cache.add(IMAGE_URL);
-            alert('Image saved to Cache! Now disconnect your internet.');
+        async function save() {
+            // 1. Open a cache box named 'v1'
+            const cache = await caches.open('v1');
+            // 2. Fetch image from net & put in box
+            await cache.add(url);
+            document.getElementById('status').innerText = 'Saved! Disconnect internet & click Load.';
         }
 
-        async function loadFromCache() {
-            const cache = await caches.open(CACHE_NAME);
-            // Check pantry for the image
-            const cachedResponse = await cache.match(IMAGE_URL);
+        async function load() {
+            const cache = await caches.open('v1');
+            // 3. Look for image in the box
+            const res = await cache.match(url);
 
-            if (cachedResponse) {
-                // Turn the file into a Blob (image data) to show it
-                const blob = await cachedResponse.blob();
-                document.getElementById('myImage').src = URL.createObjectURL(blob);
+            if (res) {
+                const blob = await res.blob();
+                document.getElementById('img').src = URL.createObjectURL(blob);
+                document.getElementById('status').innerText = 'Success! Image loaded from Cache.';
             } else {
-                alert('Image not found in Cache!');
+                document.getElementById('status').innerText = 'Not found in cache.';
             }
         }
     </script>
 </body>
+
 </html>

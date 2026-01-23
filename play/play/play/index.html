@@ -1,51 +1,54 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>SessionStorage Demo</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        padding: 2rem;
-      }
-      textarea {
-        width: 100%;
-        height: 150px;
-        padding: 10px;
-        font-size: 16px;
-      }
-      .status {
-        margin-top: 10px;
-        color: green;
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>📧 Temporary Email Draft</h2>
-    <p>Type something below, then refresh the page.</p>
 
-    <textarea
-      id="emailDraft"
-      placeholder="Start typing your email..."
-    ></textarea>
-    <div id="status" class="status"></div>
+<head>
+  <meta charset="UTF-8" />
+  <title>SessionStorage Demo</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
 
-    <script>
-      const input = document.getElementById("emailDraft");
-      const status = document.getElementById("status");
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      font-size: 16px;
+    }
 
-      // 1. Check if we have a saved draft in sessionStorage on load
-      if (sessionStorage.getItem("draft_message")) {
-        input.value = sessionStorage.getItem("draft_message");
-        status.innerText = "Rescued your draft from the session!";
-      }
+    .status {
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
 
-      // 2. Listen for typing and save to sessionStorage
-      input.addEventListener("input", (e) => {
-        sessionStorage.setItem("draft_message", e.target.value);
-        status.innerText = "Saving...";
-      });
-    </script>
-  </body>
+<body>
+  <h3>Autosave Form</h3>
+  <form>
+    <input id="username" placeholder="Name" /><br /><br />
+    <textarea id="message" placeholder="Message"></textarea>
+  </form>
+  <p id="status"></p>
+
+  <script>
+    const user = document.getElementById("username");
+    const msg = document.getElementById("message");
+
+    // 1. Load saved data
+    user.value = sessionStorage.getItem("user") || "";
+    msg.value = sessionStorage.getItem("msg") || "";
+
+    // 2. Save on any input
+    document.addEventListener("input", () => {
+      sessionStorage.setItem("user", user.value);
+      sessionStorage.setItem("msg", msg.value);
+
+      document.getElementById("status").innerText = "Saved!";
+    });
+  </script>
+</body>
+
 </html>

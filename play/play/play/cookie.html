@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Cookie Demo</title>
 </head>
+
 <body>
-    <h2>🍪 Cookie Monster Tracker</h2>
+    <h2>Cookie Tracker</h2>
     <p>Click the button to accept a cookie.</p>
-    
-    <button onclick="setCookie()">Eat Cookie (Save Data)</button>
-    <button onclick="checkCookie()">Check Cookie (Read Data)</button>
+
+    <button onclick="setCookie()">Accept Cookie</button>
+    <button onclick="checkCookie()">Check Cookie</button>
     <p id="status"></p>
 
     <script>
         const status = document.getElementById('status');
 
         function setCookie() {
-            // Cookies require a specific string format: "key=value; expires=Date; path=/"
-            const date = new Date();
-            date.setTime(date.getTime() + (5000)); // Expires in 1 day
-            const expires = "expires=" + date.toUTCString();
-            
-            document.cookie = "username=StudentUser; " + expires + "; path=/";
-            status.innerText = `Cookie set! It expires in 24 hours.`;
+            document.cookie = "username=StudentUser; max-age=10; path=/";
+
+            status.innerText = "Cookie set! It behaves like a ghost—gone in 10 seconds.";
         }
 
         function checkCookie() {
-            // document.cookie returns ONE long string like "username=StudentUser; theme=dark"
             status.innerText = "Raw Cookie String: " + document.cookie;
         }
     </script>
 </body>
+
 </html>
