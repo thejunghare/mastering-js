@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="checkCookie()">check cookies</button>
+    <p></p>
+    <script>
+      //   what(username);how long(duration); where(path)
+      if (confirm("Accept cookies")) {
+        document.cookie = "username=Prasad; max-age= 10; path=/";
+      }
+      pTag = document.querySelector("p");
+
+      function checkCookie() {
+        pTag.innerText = document.cookie;
+      }
+    </script>
+  </body>
+</html>

@@ -19,24 +19,25 @@
       <button type="submit">submit</button>
     </form>
 
-    <ul>
-
+    <ul id="container">
+      
     </ul>
+
 
     <script>
         let btn = document.querySelector('button')
-let ulTag = document.querySelector('ul')
         let titleInput = document.getElementById('title')
         let descriptionInput = document.querySelector('#description')
         let dateInput = document.querySelector('#date')
-
+        let container = document.querySelector('#container')
+        
         btn.addEventListener('click', (e) =>{
             // !todo get the userinput and storage it somewhere
             e.preventDefault()
             console.log(titleInput.value, descriptionInput.value, dateInput.value);
-            const newLi = document.createElement('li')
-            ulTag.appendChild(newLi)
-newLi.textContent = `${titleInput.value} | ${descriptionInput.value} | ${dateInput.value}`
+            let newElement = document.createElement('li')
+            newElement.innerText = titleInput.value + descriptionInput.value + dateInput.value
+            container.appendChild(newElement)
         })
     </script>
   </body>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="makeCake()">make a cake</button>
+    <button onclick="orderCake()">order a cake</button>
+    <button onclick="orderBurger()">order a burger</button>
+
+    <script>
+      function makeCake() {
+        setTimeout(() => {
+          console.log("baking cake");
+        }, 2000);
+
+        console.log("adding items");
+
+        console.log("cake is ready");
+      }
+
+      function cakes() {
+        return new Promise((resolve, error) => {
+          setTimeout(() => {
+            resolve("cake ready");
+          }, 2000);
+        });
+      }
+
+      function orderCake() {
+        console.log("ordering a cake");
+
+        cakes().then((msg) => console.log(msg));
+      }
+
+      async function orderBurger() {
+        console.log("ordering a burger");
+        let msg = await cakes();
+        console.log(msg);
+      }
+    </script>
+
+    <!-- 
+Parshiv
+Danish
+Jaikisahn
+Omkar 
+SM
+Ishita
+singole
+sarvehs
+bhavika
+om sawant
+prince
+kushal
+ganesh
+kanisk
+swaraj
+lokesk
+BJ
+manthan
+akshara
+nandini
+nishi
+sneha
+snehil
+akshay
+nish
+irene
+mansi
+om m
+vyom
+prathamesh
+ayush m
+yuraj
+ashish
+sameer s
+
+
+
+    -->
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="orderPizza()">order pizza</button>
+    <button onclick="orderCake()">order pizza</button>
+    <script>
+      function orderPizza() {
+        setTimeout(() => {
+          console.log("Accpting your order...");
+          console.log("Your order was accpeted...");
+        }, 5000);
+
+        setTimeout(() => {
+          console.log("Your order was prepared...");
+          console.log("Your order was dev...");
+        }, 10000);
+      }
+
+      function helperFunction() {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve("Cake ready");
+          }, 5000);
+        });
+      }
+
+      function orderCake() {
+        console.log("order a cake");
+
+        helperFunction().then((msg) => {
+          console.log(msg);
+        });
+      }
+
+      async function orderCakeTwo() {
+        console.log("order a cake");
+
+        let msg = await helperFunction();
+        console.log(msg);
+      }
+
+      /* 
+      Piysuh p
+      atharv G
+      mukesh c
+      sahil
+      ashu m
+      rakesh
+      asad
+      pragati
+      rashmeet
+      bhuvisha
+      sahil kumar
+      arman
+      danish
+      atharava c
+      Tanish
+      aditya b
+      atisham
+      sanahk
+      jiya
+      nandini
+      rima
+      parth
+      kunal
+      soham p
+      shuh
+      roy
+      prashatan
+      antikraj
+      sejal
+      ashukam
+      sneha
+      sativk
+      yash t
+      
+      
+      
+      */
+    </script>
+  </body>
+</html>

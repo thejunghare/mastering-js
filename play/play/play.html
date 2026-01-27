@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="load()">load</button>
+    <button onclick="cache()">save to cache</button>
+    <img src="" alt="" id="img" />
+    <script>
+      const url =
+        "https://images.dog.ceo/breeds/retriever-golden/n02099601_124.jpg";
+
+      async function cache() {
+        const cache = await caches.open("v1");
+        await cache.add(url);
+      }
+
+      async function load() {
+        const box = caches.open("b1");
+        const result = await caches.match(url);
+
+        if (result) {
+          const data = await result.blob();
+          document.getElementById("img").src = URL.createObjectURL(data);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spread & Rest Operators</title>
+    <style>
+      /* Brutalist design variables */
+      :root {
+        --color-black: #000000;
+        --color-white: #ffffff;
+        --color-red: #ff3e3e;
+        --color-blue: #3e3eff;
+        --color-gray: #888888;
+      }
+
+      /* Base styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Courier New", monospace;
+        background-color: var(--color-white);
+        color: var(--color-black);
+        line-height: 1.6;
+        padding: 20px;
+        font-size: 16px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        border: 5px solid var(--color-black);
+        padding: 20px;
+        position: relative;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        border-bottom: 5px solid var(--color-black);
+        padding-bottom: 10px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin: 25px 0 15px;
+        color: var(--color-black);
+        border-bottom: 2px solid var(--color-gray);
+        padding-bottom: 5px;
+      }
+
+      .example {
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .code-block {
+        background-color: var(--color-black);
+        color: var(--color-white);
+        padding: 15px;
+        border: 3px solid var(--color-black);
+        margin: 15px 0;
+        font-family: "Courier New", monospace;
+        white-space: pre-wrap;
+        overflow-x: auto;
+        line-height: 1.5;
+      }
+
+      .result {
+        background-color: var(--color-gray);
+        padding: 15px;
+        border: 3px solid var(--color-black);
+        margin: 15px 0;
+        min-height: 50px;
+        font-family: "Courier New", monospace;
+      }
+
+      .try-it {
+        background-color: var(--color-black);
+        color: var(--color-white);
+        border: 3px solid var(--color-black);
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        position: relative;
+        margin-top: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+      }
+
+      .try-it:hover {
+        background-color: var(--color-white);
+        color: var(--color-black);
+      }
+
+      .explanation {
+        background-color: var(--color-gray);
+        padding: 15px;
+        border: 3px solid var(--color-black);
+        margin: 20px 0;
+        font-size: 14px;
+      }
+
+      .key-points {
+        background-color: var(--color-black);
+        color: var(--color-white);
+        padding: 15px;
+        border: 3px solid var(--color-black);
+        margin: 30px 0;
+      }
+
+      .key-points li {
+        margin-bottom: 8px;
+      }
+
+      .tooltip {
+        position: relative;
+        display: inline-block;
+      }
+
+      .tooltip .tooltip-text {
+        visibility: hidden;
+        width: 200px;
+        background-color: var(--color-red);
+        color: var(--color-white);
+        text-align: center;
+        border: 3px solid var(--color-black);
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -100px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 14px;
+      }
+
+      .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .brutalist-button {
+        border: 5px solid var(--color-black);
+        background-color: var(--color-white);
+        color: var(--color-black);
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .brutalist-button:hover {
+        background-color: var(--color-black);
+        color: var(--color-white);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>SPREAD & REST OPERATORS</h1>
+
+      <div class="grid">
+        <div class="example">
+          <h2>Merge two arrays using spread operator</h2>
+
+          <div class="code-block">
+            // Arrays to merge const array1 = [1, 2, 3]; const array2 = [4, 5,
+            6]; // Merge using spread operator const mergedArray = [...array1,
+            ...array2]; console.log(mergedArray); // Output: [1, 2, 3, 4, 5, 6]
+          </div>
+
+          <p class="tooltip">
+            💡 This demonstrates merging arrays using the spread operator
+            <span class="tooltip-text"
+              >The spread operator (...) allows you to expand iterable objects
+              like arrays into other arrays</span
+            >
+          </p>
+
+          <button class="try-it" onclick="mergeArrays()">Try It!</button>
+        </div>
+
+        <div class="example">
+          <h2>Function using rest operator</h2>
+
+          <div class="code-block">
+            // Function using rest operator function sum(...numbers) { return
+            numbers.reduce((acc, num) => acc + num, 0); } // Call with multiple
+            arguments console.log(sum(1, 2, 3)); // Output: 6
+            console.log(sum(10, 20, 30, 40)); // Output: 100
+          </div>
+
+          <p class="tooltip">
+            💡 This demonstrates using the rest operator to accept unlimited
+            arguments
+            <span class="tooltip-text"
+              >The rest operator (...) allows a function to accept an indefinite
+              number of arguments as an array</span
+            >
+          </p>
+
+          <button class="try-it" onclick="sumNumbers()">Try It!</button>
+        </div>
+      </div>
+
+      <div class="result" id="arrayResult"></div>
+
+      <div class="key-points">
+        <h2>Key Points to Remember</h2>
+        <ul>
+          <li>
+            <strong>Spread operator (...)</strong>: Used to expand elements of
+            an iterable (arrays, strings, etc.)
+          </li>
+          <li>
+            <strong>Rest operator (...)</strong>: Used to collect multiple
+            elements into an array
+          </li>
+          <li>
+            Both operators use the same symbol but have different contexts and
+            purposes
+          </li>
+          <li>
+            Spread is used in array literals, function calls, and object
+            literals
+          </li>
+          <li>Rest is used in function parameter lists</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      // Merge arrays example
+      function mergeArrays() {
+        const array1 = [1, 2, 3];
+        const array2 = [4, 5, 6];
+
+        const mergedArray = [...array1, ...array2];
+
+        console.log(mergedArray);
+        document.getElementById("arrayResult").textContent =
+          JSON.stringify(mergedArray);
+      }
+
+      // Initialize examples
+      document.getElementById("arrayResult").textContent =
+        "Click 'Try It!' to see the result";
+    </script>
+  </body>
+</html>
